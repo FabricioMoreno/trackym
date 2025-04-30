@@ -22,6 +22,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { DataGrid, GridActionsCellItem } from "@mui/x-data-grid";
 import CustomCronometro from "../../components/CustomCronometro";
 import Swal from "sweetalert2";
+import FloatingTimer from "./components/FloatingTimer";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 const TrainingPage = () => {
   // const navigate = useNavigate();
@@ -75,7 +77,7 @@ const TrainingPage = () => {
       // Alerta de error
       Swal.fire({
         title: "Error",
-        text: "No se pudo copiar al portapapeles" +   err,
+        text: "No se pudo copiar al portapapeles" + err,
         icon: "error",
         confirmButtonText: "Entendido",
       });
@@ -235,6 +237,17 @@ const TrainingPage = () => {
                       inputProps={{ min: 0 }}
                     />
                   </Grid>
+                  <Grid item xs={6}>
+                    <Button
+                      variant="contained"
+                      endIcon={<AddCircleOutlineIcon />}
+                      onClick={() => handleCompleteSet(index)}
+                      disabled={!exercise.reps || !exercise.weight}
+                      size={isMobile ? "small" : "medium"}
+                    >
+                      Agregar
+                    </Button>
+                  </Grid>
                 </Grid>
 
                 <Box sx={{ mb: 3 }}>
@@ -247,6 +260,7 @@ const TrainingPage = () => {
                     size={isMobile ? 150 : 200}
                     color={isRestBetweenSets ? "red" : "blue"}
                   />
+                  {/* <FloatingTimer/> */}
                   <Button
                     variant={isRestBetweenSets ? "contained" : "outlined"}
                     onClick={() => setIsRestBetweenSets(!isRestBetweenSets)}
@@ -271,8 +285,7 @@ const TrainingPage = () => {
                   <Button
                     variant="contained"
                     endIcon={<CheckCircleIcon />}
-                    onClick={() => handleCompleteSet(index)}
-                    disabled={!exercise.reps || !exercise.weight}
+                    onClick={() => handleNext()}
                     size={isMobile ? "small" : "medium"}
                   >
                     Completar Serie
