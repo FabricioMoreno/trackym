@@ -24,6 +24,8 @@ const privateRouter = createBrowserRouter([
       },
     ],
   },
-]);
+],{
+  basename:import.meta.env.BASE_URL,
+});
 
 export default privateRouter;
