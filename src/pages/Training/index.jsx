@@ -259,6 +259,9 @@ const TrainingPage = () => {
                     }
                     size={isMobile ? 150 : 200}
                     color={isRestBetweenSets ? "red" : "blue"}
+                    onTimeComplete={() => {
+                      setIsRestBetweenSets(true);
+                    }}
                   />
                   {/* <FloatingTimer/> */}
                   <Button

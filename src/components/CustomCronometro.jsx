@@ -116,10 +116,11 @@ const useAudioControl = (audioUrl) => {
 const CustomCronometro = ({
   initialMinutes = 3,
   initialSeconds = 0,
-  onTimeChange,
+  onTimeChange= ()=>{},
   color = "primary",
   size = 200,
   autoStart = false,
+  onTimeComplete = ()=>{}
 }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -168,6 +169,8 @@ const CustomCronometro = ({
         setIsPlaying(false);
       },
     });
+
+    onTimeComplete()
   };
 
   const handleConfirmTime = () => {
